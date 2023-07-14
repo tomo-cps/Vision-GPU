@@ -70,9 +70,9 @@
                   <v-list-item-title>Memory: {{ gpu.Memory }}</v-list-item-title>
                 </v-list-item-content>
               </template>
-              <v-list-item-action>
+              <!-- <v-list-item-action>
                 <v-icon :color="getIconColor(gpu.Utilization)">mdi-server-minus</v-icon>
-              </v-list-item-action>
+              </v-list-item-action> -->
             </v-list-item>
           </v-list>
         </div>
