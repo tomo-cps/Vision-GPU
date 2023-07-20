@@ -51,17 +51,26 @@ async def get_gpu_info():
         gpu_data["LoginUser"] = username
         gpu_data["GPU"] = f"GPU{i}"
         gpu_data["Name"] = gpu_name
+<<<<<<< HEAD
 
         gpu_data["TotalMemory"] = f"{total_memory} MB"
         gpu_data["UsedMemory"] = f"{used_memory}MB/{total_memory} MB"
         gpu_data["MemoryUtilization"] = f"{memory_utilization:.2f}%"
 
 
+=======
+        gpu_data["Memory"] = f"{memory_info.total / 1024**2} MB"
+>>>>>>> 7405a3828b395607bcbea11128cacf574c1149e9
         gpu_data["Utilization"] = f"{utilization.gpu}%"
         gpu_data["FanSpeed"] = f"{fan_speed}%"
         gpu_data["Temperature"] = f"{temperature}°C"
         # gpu_data["ImgPath"] = "../assets/"+hostname+".png"
+<<<<<<< HEAD
         gpu_data["ImgPath"] = f"../assets/"+hostname+".png"
+=======
+        gpu_data["ImgPath"] = "../assets/"+hostname+".png"
+
+>>>>>>> 7405a3828b395607bcbea11128cacf574c1149e9
 
         gpu_info.append(gpu_data)
         print(gpu_info)
