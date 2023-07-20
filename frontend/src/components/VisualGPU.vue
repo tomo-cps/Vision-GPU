@@ -33,9 +33,8 @@
                                                     <v-avatar :color="randomColor" size="large">
                                                         <span class="text-sm">{{ gpu.LoginUser }}</span>
                                                     </v-avatar>
-                                                    <h3>{{ user.fullName }}</h3>
-                                                    <p class="text-caption mt-1">
-                                                        {{ user.email }}
+                                                    <p v-for="user in gpu.DetailUser" :key="user" class="text-caption mt-1">
+                                                        {{ user }}
                                                     </p>
                                                 </div>
                                             </v-card-text>

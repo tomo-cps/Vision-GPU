@@ -13,8 +13,8 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
+            <v-btn icon @click="reloadPage">
+                <v-icon>mdi-reload</v-icon>
             </v-btn>
 
             <v-btn icon>
@@ -35,5 +35,10 @@ export default defineComponent({
     name: 'SideBar',
     components: {
     },
+    methods: {
+    reloadPage() {
+      location.reload();
+    }
+  },
 });
 </script>
