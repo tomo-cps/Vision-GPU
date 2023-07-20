@@ -1,6 +1,7 @@
 # Visual-GPU
 
 WiP
-- GPU マシンから稼働状況を FastAPI を通じて出力させることはできた
+- かっこよくなってきた
 
-<img width="1024" alt="Screenshot 2023-07-15 at 12 50 14" src="https://github.com/tomo-cps/Visual-GPU/assets/103920024/28bea1fc-7bde-43ea-b151-437cad9d9f1b">
+<img width="1208" alt="Screenshot 2023-07-20 at 21 03 48" src="https://github.com/tomo-cps/Visual-GPU/assets/103920024/a3c85162-fc6d-45b8-9ccf-8255531888f8">
+
