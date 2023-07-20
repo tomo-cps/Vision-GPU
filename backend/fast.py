@@ -7,8 +7,11 @@ import os
 hostname = socket.gethostname()
 print("マシンのホスト名:", hostname)
 
-username = os.getlogin()
-print("Logged-in username:", username)
+import getpass
+username = getpass.getuser()
+
+# username = os.getlogin()                                                                    
+# print("Logged-in username:", username) 
 
 app = FastAPI()
 
