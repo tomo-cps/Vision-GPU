@@ -2,16 +2,27 @@
 from fastapi import FastAPI
 import pynvml
 import socket
-import os
+import pexpect
+import subprocess
 
 hostname = socket.gethostname()
 print("マシンのホスト名:", hostname)
 
-import getpass
-username = getpass.getuser()
+child = pexpect.spawn("who")
+child.expect(pexpect.EOF)
+detailuser = child.before.decode().strip()
+print(detailuser)
+if detailuser:
+    username = detailuser.split("\n")
+    username = username[0].split(" ")
+    username = username[0]
+else:
+    username=None
 
-# username = os.getlogin()                                                                    
-# print("Logged-in username:", username) 
+result = subprocess.check_output("who")
+detailuser = result.decode().strip().split("\n")
+print(detailuser)
+
 
 app = FastAPI()
 
@@ -52,6 +63,7 @@ async def get_gpu_info():
 
         gpu_data["MachineName"] = hostname
         gpu_data["LoginUser"] = username
+        gpu_data["DetailUser"] = detailuser
         gpu_data["GPU"] = f"GPU{i}"
         gpu_data["Name"] = gpu_name
 
