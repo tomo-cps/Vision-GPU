@@ -91,12 +91,6 @@
 
 <script setup>
 
-const user = {
-    initials: 'TO',
-    fullName: 'Tomoaki Ohkawa',
-    email: 'tomoaki.ohkawa@cps.akita-pu.ac.jp',
-}
-
 </script>
 
 <script>
