@@ -3,3 +3,4 @@ fastapi
 pynvml
 nvidia-ml-py
 psutil
+pexpect
