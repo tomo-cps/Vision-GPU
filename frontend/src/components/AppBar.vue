@@ -13,8 +13,8 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
+            <v-btn icon @click="reloadPage">
+                <v-icon>mdi-reload</v-icon>
             </v-btn>
 
             <v-btn icon>
@@ -35,9 +35,10 @@ export default defineComponent({
     name: 'SideBar',
     components: {
     },
+    methods: {
+    reloadPage() {
+      location.reload();
+    }
+  },
 });
 </script>
-<!-- <template v-slot:image>
-    <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
-</template> -->
-<!-- color="teal-lighten-2" image="https://picsum.photos/1920/1080?random" -->

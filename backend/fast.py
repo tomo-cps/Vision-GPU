@@ -23,6 +23,7 @@ result = subprocess.check_output("who")
 detailuser = result.decode().strip().split("\n")
 print(detailuser)
 
+
 app = FastAPI()
 
 @app.on_event("startup")
