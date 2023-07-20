@@ -11,7 +11,7 @@ sudo git clone https://github.com/tomo-cps/Visual-GPU.git
 cd Visual-GPU/backend 
 ```
 ```
-bash setup.sh
+conda create -n vig python==3.9
 ```
 ```
 conda activate vig
