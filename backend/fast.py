@@ -1,3 +1,4 @@
+# uvicorn fast:app --host 0.0.0.0 --port 8000
 from fastapi import FastAPI
 import pynvml
 
@@ -13,7 +14,7 @@ async def shutdown_event():
     # NVIDIAドライバーと関連ライブラリをクリーンアップ
     pynvml.nvmlShutdown()
 
-@app.get("/gpu")
+@app.get("/erie")
 async def get_gpu_info():
     gpu_info = []
 
@@ -38,5 +39,7 @@ async def get_gpu_info():
         gpu_data["Temperature"] = f"{temperature}°C"
 
         gpu_info.append(gpu_data)
+        print(gpu_info)
 
     return gpu_info
+
