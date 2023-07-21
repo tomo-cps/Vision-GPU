@@ -13,7 +13,7 @@ npm run serve
 ### 仮想環境の構築
 
 ```
-conda create -n vig python==3.9
+y | conda create -n vig python==3.9
 conda activate vig
 git clone https://github.com/tomo-cps/Visual-GPU.git
 cd Visual-GPU/backend 
