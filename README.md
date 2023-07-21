@@ -2,15 +2,6 @@
 
 ## SetUp
 ```
-cd /etc/systemd/system/
-```
-```
-sudo git clone https://github.com/tomo-cps/Visual-GPU.git
-```
-```
-cd Visual-GPU/backend 
-```
-```
 conda create -n vig python==3.9
 ```
 ```
@@ -18,6 +9,15 @@ conda activate vig
 ```
 ```
 pip install -r requrements.txt
+```
+```
+cd /etc/systemd/system/
+```
+```
+sudo git clone https://github.com/tomo-cps/Visual-GPU.git
+```
+```
+cd Visual-GPU/backend 
 ```
 ```
 sudo emacs /etc/systemd/system/vig-app.service
