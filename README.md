@@ -1,28 +1,34 @@
 # Visual-GPU
+## Frontend
 
-## SetUp
+```
+npm install 
+```
+
+```
+npm run serve
+```
+
+## Backend
+### 仮想環境の構築
+
 ```
 conda create -n vig python==3.9
-```
-```
 conda activate vig
-```
-```
+git clone https://github.com/tomo-cps/Visual-GPU.git
+cd Visual-GPU/backend 
 pip install -r requrements.txt
+cd ../../
+rm -rf Visual-GPU/
 ```
+
+### systemd を用いて常に FastAPI を実行させておく
 ```
 cd /etc/systemd/system/
-```
-```
 sudo git clone https://github.com/tomo-cps/Visual-GPU.git
-```
-```
-cd Visual-GPU/backend 
-```
-```
 sudo emacs /etc/systemd/system/vig-app.service
 ```
-↓ 追記
+↓ vig-app.service に追記する
 ```
 [Unit]
 Description=FastAPI Application
@@ -40,6 +46,7 @@ StandardError=file:/var/log/vig-app.log
 WantedBy=multi-user.target
 ```
 
+### サービスの起動
 ```
 sudo systemctl daemon-reload
 sudo systemctl start vig-app
