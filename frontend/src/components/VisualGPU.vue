@@ -18,21 +18,23 @@
                         </v-col>
                         <v-col cols="14" class="text-right">
                             <v-container fluid style="height: 60px">
-                                <v-row justify="center">
+                                <v-row justify="end">
                                     <v-menu min-width="200px" rounded>
                                         <template v-slot:activator="{ props }">
-                                            <v-btn icon v-bind="props">
-                                                <v-avatar :color="randomColor" size="x-large">
-                                                    <span class="text-sm">{{ gpu.LoginUser }}</span>
-                                                </v-avatar>
-                                            </v-btn>
+                                            <div style="display: flex; justify-content: flex-end;">
+                                                <v-btn icon v-bind="props" v-for="login_user in login_users" :key="login_user" style="margin: 7px;">
+                                                    <v-avatar :color="getUserColor(login_user)" size="x-large">
+                                                        <span class="text-sm">{{ login_user }}</span>
+                                                    </v-avatar>
+                                                </v-btn>
+                                            </div>
                                         </template>
                                         <v-card>
                                             <v-card-text>
                                                 <div class="mx-auto text-center">
-                                                    <v-avatar :color="randomColor" size="large">
-                                                        <span class="text-sm">{{ gpu.LoginUser }}</span>
-                                                    </v-avatar>
+                                                    <!-- <v-avatar :color="getUserColor(login_user)" size="large"> -->
+                                                        <!-- <span class="text-sm">{{ gpu.LoginUser }}</span> -->
+                                                    <!-- </v-avatar> -->
                                                     <p v-for="user in gpu.DetailUser" :key="user" class="text-caption mt-1">
                                                         {{ user }}
                                                     </p>
@@ -111,10 +113,19 @@ export default {
     data: () => ({
         gpuInfo: [],
         expand: false,
+        color_dic: {"yama":"red-lighten-1", 
+                    'chi':'yellow-darken-2', 
+                    'sen':'light-green-lighten-1', 
+                    'ryo':'orange-lighten-1',
+                    'riku':'deep-purple-lighten-1',
+                    'tomo':'teal-darken-1',
+                    'kai':'blue-darken-3'},
         colors: ['red', 'blue', 'green', 'yellow', 'orange', 'purple'],
+        login_users: []
     }),
-    mounted() {
+    async mounted() {
         this.fetchGPUInfo();
+        await this.getLoginUser();
     },
     methods: {
         async fetchGPUInfo() {
@@ -122,21 +133,41 @@ export default {
                 const response = await fetch(this.apiUrl);
                 const data = await response.json();
                 this.gpuInfo = data;
-                console.log(data);
+                // console.log(data);
             } catch (error) {
                 console.log(error);
             }
         },
         fullReportClik() {
             this.expand = !this.expand;
-            // this.fetchGPUInfo();
+        },
+        async getLoginUser() {
+            try {
+                const response = await fetch(this.apiUrl);
+                var data = await response.json();
+                this.gpuInfo = data;
+                // console.log(data);
+            } catch (error) {
+                console.log(error);
+            }
+            let user_lst = []
+            for (var i = 0; i < data.length; i++) {
+                const gpu = data[i];
+                for (var n = 0; n < gpu.DetailUser.length; n++) {
+                    const user = gpu.DetailUser[n];
+                    const splited_user = user.split(' ');
+                    user_lst.push(splited_user[0])
+                    const unique_user_lst = [...new Set(user_lst)];
+                    this.login_users = unique_user_lst        
+        }
         }
     },
-    computed: {
-        randomColor() {
-            const randomIndex = Math.floor(Math.random() * this.colors.length);
-            return this.colors[randomIndex];
+    getUserColor(login_user) {
+        const user_color = this.color_dic[login_user]
+        return user_color
         },
+    },
+    computed: {
     },
 }
 
@@ -173,8 +204,7 @@ export default {
 
 /* .text-h6 {
   font-size: 0.6rem; /* 例えば、フォントサイズを1.25remに設定 */
-  /* font-weight: bold; フォントの太さを太字に設定 */
-  /* margin-bottom: 0.5rem; 下のマージンを0.5remに設定 */
+/* font-weight: bold; フォントの太さを太字に設定 */
+/* margin-bottom: 0.5rem; 下のマージンを0.5remに設定 */
 /* } */
-
 </style>
