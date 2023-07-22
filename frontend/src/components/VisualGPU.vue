@@ -2,7 +2,7 @@
     <v-sheet :elevation="5">
         <div v-for="gpu in gpuInfo" :key="gpu.GPU">
             <v-card class="mx-auto" max-width="5000">
-                <v-img :src="imgUrl" max-width="100%" max-height="500"></v-img>
+                <v-img :src="imgUrl" max-width="100%" max-height="400"></v-img>
                 <v-card-item :title="gpu.MachineName" max-width="5000">
                     <template v-slot:subtitle>
                         <div style="display: flex; align-items: center;">
@@ -22,19 +22,29 @@
                                     <v-menu min-width="200px" rounded>
                                         <template v-slot:activator="{ props }">
                                             <div style="display: flex; justify-content: flex-end;">
-                                                <v-btn icon v-bind="props" v-for="login_user in login_users" :key="login_user" style="margin: 7px;">
+                                                <!-- <v-card-actions class="d-flex justify-end"
+                                                    style="position: absolute; top: 10px; right: 10px;">
+                                                    <div v-for="login_user in login_users" :key="login_user"
+                                                        style="margin: 7px; position: relative; background-color: white; padding: 3px; border-radius: 50%;">
+                                                        <v-avatar :color="getUserColor(login_user)" size="x-large">
+                                                            <span class="text-sm">{{ login_user }}</span>
+                                                        </v-avatar>
+                                                    </div>
+                                                </v-card-actions> -->
+                                                <v-card-actions class="d-flex justify-end"
+                                                    style="position: absolute; top: 5px; right: 10px;">
+                                                <v-btn icon v-bind="props" v-for="login_user in login_users"
+                                                    :key="login_user" style="margin: 7px;">
                                                     <v-avatar :color="getUserColor(login_user)" size="x-large">
                                                         <span class="text-sm">{{ login_user }}</span>
                                                     </v-avatar>
                                                 </v-btn>
+                                            </v-card-actions>
                                             </div>
                                         </template>
                                         <v-card>
                                             <v-card-text>
                                                 <div class="mx-auto text-center">
-                                                    <!-- <v-avatar :color="getUserColor(login_user)" size="large"> -->
-                                                        <!-- <span class="text-sm">{{ gpu.LoginUser }}</span> -->
-                                                    <!-- </v-avatar> -->
                                                     <p v-for="user in gpu.DetailUser" :key="user" class="text-caption mt-1">
                                                         {{ user }}
                                                     </p>
@@ -64,12 +74,17 @@
                             <v-list-item v-for="gpu in gpuInfo" :key="gpu.GPU">
                                 <template v-slot:default>
                                     <v-list-item-content>
-                                        <v-list-item-title class="text-h10">Machine Name: {{ gpu.MachineName }}</v-list-item-title>
+                                        <v-list-item-title class="text-h10">Machine Name: {{ gpu.MachineName
+                                        }}</v-list-item-title>
                                         <v-list-item-title class="text-h10">GPU Name: {{ gpu.Name }}</v-list-item-title>
-                                        <v-list-item-title class="text-h10">Login User: {{ gpu.LoginUser }}</v-list-item-title>
-                                        <v-list-item-title class="text-h10">Utilization: {{ gpu.Utilization }}</v-list-item-title>
-                                        <v-list-item-title class="text-h10">Temperature: {{ gpu.Temperature }}</v-list-item-title>
-                                        <v-list-item-title class="text-h10">Fan Speed: {{ gpu.FanSpeed }}</v-list-item-title>
+                                        <v-list-item-title class="text-h10">Login User: {{ gpu.LoginUser
+                                        }}</v-list-item-title>
+                                        <v-list-item-title class="text-h10">Utilization: {{ gpu.Utilization
+                                        }}</v-list-item-title>
+                                        <v-list-item-title class="text-h10">Temperature: {{ gpu.Temperature
+                                        }}</v-list-item-title>
+                                        <v-list-item-title class="text-h10">Fan Speed: {{ gpu.FanSpeed
+                                        }}</v-list-item-title>
                                         <v-list-item-title class="text-h10">Memory: {{ gpu.UsedMemory }}</v-list-item-title>
                                     </v-list-item-content>
                                 </template>
@@ -113,13 +128,15 @@ export default {
     data: () => ({
         gpuInfo: [],
         expand: false,
-        color_dic: {"yama":"red-lighten-1", 
-                    'chi':'yellow-darken-2', 
-                    'sen':'light-green-lighten-1', 
-                    'ryo':'orange-lighten-1',
-                    'riku':'deep-purple-lighten-1',
-                    'tomo':'teal-darken-1',
-                    'kai':'blue-darken-3'},
+        color_dic: {
+            "yama": "red-lighten-1",
+            'chi': 'yellow-darken-2',
+            'sen': 'light-green-lighten-1',
+            'ryo': 'orange-lighten-1',
+            'riku': 'deep-purple-lighten-1',
+            'tomo': 'teal-darken-1',
+            'kai': 'blue-darken-3'
+        },
         colors: ['red', 'blue', 'green', 'yellow', 'orange', 'purple'],
         login_users: []
     }),
@@ -158,13 +175,13 @@ export default {
                     const splited_user = user.split(' ');
                     user_lst.push(splited_user[0])
                     const unique_user_lst = [...new Set(user_lst)];
-                    this.login_users = unique_user_lst        
-        }
-        }
-    },
-    getUserColor(login_user) {
-        const user_color = this.color_dic[login_user]
-        return user_color
+                    this.login_users = unique_user_lst
+                }
+            }
+        },
+        getUserColor(login_user) {
+            const user_color = this.color_dic[login_user]
+            return user_color
         },
     },
     computed: {
