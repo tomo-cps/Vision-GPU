@@ -2,7 +2,7 @@
     <v-card max-width="mx-auto" class="mx-auto" color="grey-lighten-3">
         <v-app-bar color="grey-darken-3">
             <template v-slot:prepend>
-                <v-app-bar-nav-icon></v-app-bar-nav-icon>
+                <v-app-bar-nav-icon v-on:click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             </template>
 
             <v-app-bar-title>Visual-GPU</v-app-bar-title>
@@ -12,28 +12,13 @@
             <v-btn icon @click="reloadPage">
                 <v-icon>mdi-reload</v-icon>
             </v-btn>
-
+            
             <v-btn icon>
                 <v-icon>mdi-heart</v-icon>
             </v-btn>
-
-            <v-btn app fab dark retain-focus-on-click v-on:click.stop="drawer = !drawer">
-                <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
         </v-app-bar>
     </v-card>
-
-    <!-- <div class="text-right sidebar_layer">
-        <v-btn class="mx-2" app fab dark retain-focus-on-click color="#80CBC4" v-on:click.stop="drawer = !drawer">
-            <v-icon>mdi-format-list-bulleted-square</v-icon>
-        </v-btn>
-    </div> -->
-    <v-navigation-drawer v-model="drawer" fixed temporary right location="right">
-        <v-row class="justify-start">
-            <!-- <v-btn class="mx-2" app color="#FFFFFF" outlined v-on:click.stop="drawer = !drawer">
-                <v-icon>mdi-close</v-icon>
-            </v-btn> -->
-        </v-row>
+    <v-navigation-drawer v-model="drawer" fixed temporary left location="left">
         <v-list nav dense>
             <v-list-item-group>
                 <v-list-item color="grey-darken-3" v-for="menu in menus" :key="menu.name" :to="menu.url">

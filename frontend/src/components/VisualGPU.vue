@@ -1,13 +1,13 @@
 <template>
-    <v-sheet :elevation="5">
+    <v-sheet :elevation="5" min-width="500" max-width="500" style="align-items: center;">
         <div v-for="gpu in gpuInfo" :key="gpu.GPU">
-            <v-card class="mx-auto" max-width="5000">
-                <v-img :src="imgUrl" max-width="100%" max-height="400"></v-img>
-                <v-card-item :title="gpu.MachineName" max-width="5000">
+            <v-card class="mx-auto" min-width="500" max-width="500">
+                <v-img :src="imgUrl" min-width="564" max-width="564" min-height="317" max-height="317"></v-img>
+                <v-card-item :title="gpu.MachineName" min-width="500" max-width="500">
                     <template v-slot:subtitle>
                         <div style="display: flex; align-items: center;">
                             <v-img src="/img/nvidia.png" alt="NVIDIA" width="16" height="16" contain></v-img>
-                            <span style="margin-left: 4px;">{{ gpu.Name }}</span>
+                            <span style="margin-left: 4px;">{{ gpu.GPUName }}</span>
                         </div>
                     </template>
                 </v-card-item>
@@ -22,18 +22,9 @@
                                     <v-menu min-width="200px" rounded>
                                         <template v-slot:activator="{ props }">
                                             <div style="display: flex; justify-content: flex-end;">
-                                                <!-- <v-card-actions class="d-flex justify-end"
-                                                    style="position: absolute; top: 10px; right: 10px;">
-                                                    <div v-for="login_user in login_users" :key="login_user"
-                                                        style="margin: 7px; position: relative; background-color: white; padding: 3px; border-radius: 50%;">
-                                                        <v-avatar :color="getUserColor(login_user)" size="x-large">
-                                                            <span class="text-sm">{{ login_user }}</span>
-                                                        </v-avatar>
-                                                    </div>
-                                                </v-card-actions> -->
                                                 <v-card-actions class="d-flex justify-end"
-                                                    style="position: absolute; top: 5px; right: 10px;">
-                                                <v-btn icon v-bind="props" v-for="login_user in login_users"
+                                                    style="position: absolute; top: 230px; right: 10px;">
+                                                <v-btn icon v-bind="props" v-for="login_user in gpu.UserNames"
                                                     :key="login_user" style="margin: 7px;">
                                                     <v-avatar :color="getUserColor(login_user)" size="x-large">
                                                         <span class="text-sm">{{ login_user }}</span>
@@ -76,8 +67,10 @@
                                     <v-list-item-content>
                                         <v-list-item-title class="text-h10">Machine Name: {{ gpu.MachineName
                                         }}</v-list-item-title>
-                                        <v-list-item-title class="text-h10">GPU Name: {{ gpu.Name }}</v-list-item-title>
-                                        <v-list-item-title class="text-h10">Login User: {{ gpu.LoginUser
+                                        <v-list-item-title class="text-h10">GPU Name: {{ gpu.GPUName }}</v-list-item-title>
+                                        <!-- <v-list-item-title class="text-h10">Login User: {{ String(login_users).replace(",",", ")
+                                        }}</v-list-item-title> -->
+                                        <v-list-item-title class="text-h10">Login User: {{ String(gpu.UserNames).replace(',', ', ')
                                         }}</v-list-item-title>
                                         <v-list-item-title class="text-h10">Utilization: {{ gpu.Utilization
                                         }}</v-list-item-title>
@@ -122,6 +115,10 @@ export default {
             type: String,
             required: true
         },
+        requireData: {
+            type: String,
+            required: true
+        },
     },
     components: {
     },
@@ -142,11 +139,12 @@ export default {
     }),
     async mounted() {
         this.fetchGPUInfo();
-        await this.getLoginUser();
     },
     methods: {
         async fetchGPUInfo() {
+            console.log(this.requireData)
             try {
+                console.log(this.apiUrl)
                 const response = await fetch(this.apiUrl);
                 const data = await response.json();
                 this.gpuInfo = data;
@@ -157,27 +155,6 @@ export default {
         },
         fullReportClik() {
             this.expand = !this.expand;
-        },
-        async getLoginUser() {
-            try {
-                const response = await fetch(this.apiUrl);
-                var data = await response.json();
-                this.gpuInfo = data;
-                // console.log(data);
-            } catch (error) {
-                console.log(error);
-            }
-            let user_lst = []
-            for (var i = 0; i < data.length; i++) {
-                const gpu = data[i];
-                for (var n = 0; n < gpu.DetailUser.length; n++) {
-                    const user = gpu.DetailUser[n];
-                    const splited_user = user.split(' ');
-                    user_lst.push(splited_user[0])
-                    const unique_user_lst = [...new Set(user_lst)];
-                    this.login_users = unique_user_lst
-                }
-            }
         },
         getUserColor(login_user) {
             const user_color = this.color_dic[login_user]
