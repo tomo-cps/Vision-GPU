@@ -2,16 +2,14 @@
   <div>
     <v-card>
       <AppBar />
-      <!-- <SideBar /> -->
     <v-card>
       <v-layout>
-        <!-- <transition-group name="fade" tag="div"> -->
           <v-row justify="center">
             <v-col cols="12" sm="6" md="5" lg="6">
-              <ViG v-for="(url, index) in apiUrls" :key="index" :api-url="url" :img-url="imgUrls[index]" class="animated-item"/>
+              <ViG v-for="(url, index) in apiUrls" :key="index" :api-url="url" :img-url="imgUrls[index]" :require-data=requireData class="animated-item"/>
+              <!-- <AvailGPU :apiUrls="apiUrls" :imgUrls="imgUrls"></AvailGPU> -->
             </v-col>
           </v-row>
-        <!-- </transition-group> -->
       </v-layout>
     </v-card>
   </v-card>
@@ -20,8 +18,8 @@
 
 <script>
 import AppBar from '../components/AppBar.vue';
-import SideBar from '../components/SideBar.vue';
 import ViG from '../components/VisualGPU.vue';
+import AvailGPU from '../components/AvailGPU.vue';
 // import SvgIcon from '@jamescoyle/vue-icon'
 // import { mdiAccount } from '@mdi/js'
 
@@ -29,8 +27,8 @@ export default {
   name: "my-cool-component",
   components: {
     AppBar,
-    SideBar,
     ViG,
+    AvailGPU,
   },
   data: () => ({
     apiUrls: [
@@ -58,6 +56,9 @@ export default {
       "/img/ibera.png",
       // "/img/junin.png",
       // "/img/kezar.png",
+    ],
+    requireData: [
+      "All"
     ]
   }),
   mounted() {
