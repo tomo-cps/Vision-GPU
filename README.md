@@ -25,3 +25,6 @@ If it doesn't work, check the port and add the following code to **/etc/init.d/m
 iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
 iptables -A OUTPUT -p tcp --dport 8000 -j ACCEPT
 ```
+
+## Sample
+![Sample](./sample/sample.gif)
