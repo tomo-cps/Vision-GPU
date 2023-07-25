@@ -69,7 +69,7 @@
                                     </v-list-item>
                                 </div>
                                 <v-expand-transition>
-                                    <div v-if="expand">
+                                    <div v-if="gpuInfo.isExpanded">
                                         <v-list class="bg-transparent">
                                             <v-list-item v-for="gpu in gpuInfo" :key="gpu.GPU">
                                                 <template v-slot:default>
@@ -99,8 +99,8 @@
                                 <v-divider></v-divider>
 
                                 <v-card-actions>
-                                    <v-btn @click="fullReportClik">
-                                        {{ !expand ? 'Full Report' : 'Hide Report' }}
+                                    <v-btn @click="fullReportClik(gpuInfo)">
+                                        {{ !gpuInfo.isExpanded ? 'Full Report' : 'Hide Report' }}
                                     </v-btn>
                                 </v-card-actions>
                             </v-card>
@@ -152,14 +152,13 @@ export default {
             'kai': 'blue-darken-3',
             'other': ''
         },
-        colors: ['red', 'blue', 'green', 'yellow', 'orange', 'purple'],
-        login_users: []
     }),
     mounted() {
     },
     methods: {
-        fullReportClik() {
-            this.expand = !this.expand;
+        fullReportClik(gpuInfo) {
+            gpuInfo.isExpanded = !gpuInfo.isExpanded;
+            // this.expand = !this.expand;
         },
         getUserColor(login_user) {
             if (login_user in this.color_dic) {
