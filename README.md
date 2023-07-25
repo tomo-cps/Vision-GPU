@@ -1,6 +1,9 @@
 # Visual-GPU
 ## Frontend
 
+This repository is an application that can visualize GPU availability！
+The backend is created in Python and the frontend in Vue3.js Vuetify3.
+
 ```
 npm install 
 ```
