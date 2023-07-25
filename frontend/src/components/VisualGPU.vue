@@ -149,7 +149,8 @@ export default {
             'ryo': 'orange-lighten-1',
             'riku': 'deep-purple-lighten-1',
             'tomo': 'teal-darken-1',
-            'kai': 'blue-darken-3'
+            'kai': 'blue-darken-3',
+            'other': ''
         },
         colors: ['red', 'blue', 'green', 'yellow', 'orange', 'purple'],
         login_users: []
@@ -161,8 +162,19 @@ export default {
             this.expand = !this.expand;
         },
         getUserColor(login_user) {
-            const user_color = this.color_dic[login_user]
-            return user_color
+            if (login_user in this.color_dic) {
+                return this.color_dic[login_user];
+            } else {
+                // If login_user is not in color_dic, assign a random color
+                if (!this.color_dic['other']) {
+                    this.color_dic['other'] = this.colors[
+                        Math.floor(Math.random() * this.colors.length)
+                    ];
+                }
+                return this.color_dic['other'];
+            }
+            // const user_color = this.color_dic[login_user]
+            // return user_color
         },
     },
     computed: {
