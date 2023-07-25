@@ -76,7 +76,7 @@ class FetchGPUData():
         self.gpu_data["Utilization"] += f"{add_string}{utilization.gpu}%"
         self.gpu_data["FanSpeed"] += f"{add_string}{fan_speed}%"
         self.gpu_data["Temperature"] += f"{add_string}{temperature}°C"
-        self.gpu_data["ImgPath"] = f"../assets/"+hostname+".png"
+        self.gpu_data["ImgPath"] = f"/img/"+hostname+".png"
         
         return self.gpu_data
 
