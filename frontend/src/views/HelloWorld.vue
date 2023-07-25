@@ -52,26 +52,26 @@ export default {
       // 'https://gmc.cps.akita-pu.ac.jp/abert/',
       'https://gmc.cps.akita-pu.ac.jp/baker/',
       // 'https://gmc.cps.akita-pu.ac.jp/casa/',
-      // 'https://gmc.cps.akita-pu.ac.jp/dusia/',
+      'https://gmc.cps.akita-pu.ac.jp/dusia/',
       'https://gmc.cps.akita-pu.ac.jp/erie/',
       // 'https://gmc.cps.akita-pu.ac.jp/fern/',
       // 'https://gmc.cps.akita-pu.ac.jp/gouin/',
       // 'https://gmc.cps.akita-pu.ac.jp/hazen/',
-      // 'https://gmc.cps.akita-pu.ac.jp/ibera/',
-      // 'https://gmc.cps.akita-pu.ac.jp/junin/',
+      'https://gmc.cps.akita-pu.ac.jp/ibera/',
+      'https://gmc.cps.akita-pu.ac.jp/junin/',
       // 'https://gmc.cps.akita-pu.ac.jp/kezar/',
     ],
     imgUrls: [
       // "/img/abert.png",
       "/img/baker.png",
       // "/img/casa.png",
-      // "/img/dusia.png",
+      "/img/dusia.png",
       "/img/erie.png",
       // "/img/fern.png",
       // "/img/gouin.png",
       // "/img/hazen.png",
-      // "/img/ibera.png",
-      // "/img/junin.png",
+      "/img/ibera.png",
+      "/img/junin.png",
       // "/img/kezar.png",
     ],
     fetchwait: false,
@@ -108,6 +108,7 @@ export default {
       }
       this.gpuInfo_dic = gpuInfo_dic
       this.propsGPUInfo = gpuInfo_dic['Home']
+      console.log(this.propsGPUInfo)
     },
     handleClick(name) {
       this.requirePage = name

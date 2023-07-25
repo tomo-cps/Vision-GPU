@@ -11,7 +11,7 @@
                                 <v-card-item :title="gpu.MachineName" min-width="500" max-width="500">
                                     <template v-slot:subtitle>
                                         <div style="display: flex; align-items: center;">
-                                            <v-img src="/img/nvidia.png" alt="NVIDIA" width="16" height="16"
+                                            <v-img src="/nvidia.png" alt="NVIDIA" width="16" height="16"
                                                 contain></v-img>
                                             <span style="margin-left: 4px;">{{ gpu.GPUName }}</span>
                                         </div>
@@ -152,6 +152,17 @@ export default {
             'kai': 'blue-darken-3',
             'other': ''
         },
+        colors: ['grey-lighten-2']
+        // colors: ['pink-lighten-1', 
+        //         'purple-lighten-1', 
+        //         'indigo-lighten-1', 
+        //         'light-blue-lighten-1', 
+        //         'cyan-lighten-1', 
+        //         'teal-lighten-1',
+        //         'light-green-lighten-1',
+        //         'lime-lighten-1',
+        //         'amber-lighten-1'
+        //     ]
     }),
     mounted() {
     },

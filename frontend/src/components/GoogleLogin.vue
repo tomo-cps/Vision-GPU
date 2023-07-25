@@ -21,12 +21,12 @@ export default {
     },
     mounted() {
         // URLパラメーターからアクセストークンを取得
-        console.log(this.isLogin)
+        // console.log(this.isLogin)
         const token = new URLSearchParams(window.location.hash.substr(1)).get("access_token");
         if (token) {
             this.$router.push('/home');
             this.isLogin = true;
-            console.log(this.isLogin)
+            // console.log(this.isLogin)
         }
     },
 };
