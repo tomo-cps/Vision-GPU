@@ -78,16 +78,14 @@ export default {
     requirePage: 'Home',
     drawer: false,
     menus: [
-      { name: '', icon: '' },
       { name: 'Home', icon: 'mdi-home' },
-      { name: 'Available', icon: 'mdi-map-marker' },
-      { name: 'Used', icon: 'mdi-apple-safari' },
+      { name: 'Available', icon: 'mdi-check-circle-outline' },
+      { name: 'Used', icon: 'mdi-chart-line-stacked' },
     ],
   }),
   async mounted() {
     await this.fetchGPUInfo();
     this.fetchwait = true;
-    console.log(this.fetchwait)
   },
   methods: {
     async fetchGPUInfo() {
