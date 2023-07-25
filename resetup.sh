@@ -1,9 +1,14 @@
 #!/bin/bash
-# 引数には以下のようにユーザ名と conda 環境の名前を指定してください
-# bash setup.sh tomo anaconda3
+# 引数には以下のようにユーザ名と conda 環境の名前を指定してください                    
+# bash setup.sh tomo anaconda3 
+
+sudo systemctl stop vig-app
+sudo rm /etc/systemd/system/vig-app.service
+sudo rm -rf /etc/systemd/system/Visual-GPU
+
 source ~/"$2"/etc/profile.d/conda.sh
-y | conda create -n test python==3.9
-conda activate test
+y | conda create -n vig python==3.9
+conda activate vig
 cd backend/
 pip install -r requirements.txt
 
