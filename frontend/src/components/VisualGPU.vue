@@ -158,7 +158,6 @@ export default {
     methods: {
         fullReportClik(gpuInfo) {
             gpuInfo.isExpanded = !gpuInfo.isExpanded;
-            // this.expand = !this.expand;
         },
         getUserColor(login_user) {
             if (login_user in this.color_dic) {
@@ -172,8 +171,6 @@ export default {
                 }
                 return this.color_dic['other'];
             }
-            // const user_color = this.color_dic[login_user]
-            // return user_color
         },
     },
     computed: {
@@ -208,12 +205,5 @@ export default {
 
 .space {
     height: 16px;
-    /* 空間の高さ */
 }
-
-/* .text-h6 {
-  font-size: 0.6rem; /* 例えば、フォントサイズを1.25remに設定 */
-/* font-weight: bold; フォントの太さを太字に設定 */
-/* margin-bottom: 0.5rem; 下のマージンを0.5remに設定 */
-/* } */
 </style>

@@ -13,8 +13,8 @@ export default {
     methods: {
         loginWithGoogle() {
             // console.log(this.isLogin)
-            const client_id = "178463503249-0e4ibfanbtmd30esgjamvvhe2a1nsvv7.apps.googleusercontent.com"; // Google Developers Consoleで取得したクライアントID
-            const redirect_uri = "https://gmc.cps.akita-pu.ac.jp/"; // Google Developers Consoleで設定したリダイレクトURL
+            const client_id = "178463503249-0e4ibfanbtmd30esgjamvvhe2a1nsvv7.apps.googleusercontent.com"; 
+            const redirect_uri = "https://gmc.cps.akita-pu.ac.jp/"; 
             const auth_url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&response_type=token&scope=openid%20email%20profile&redirect_uri=${redirect_uri}`;
             window.location.href = auth_url;
         }
@@ -25,21 +25,14 @@ export default {
         const token = new URLSearchParams(window.location.hash.substr(1)).get("access_token");
         if (token) {
             this.$router.push('/home');
-            this.isLogin = true; // ログイン成功を示すために isLogin を true に設定
+            this.isLogin = true;
             console.log(this.isLogin)
         }
-        // if (token) {
-        //     console.log(token)
-        //     //store.commit('setToken', token);
-        //     //this.$router.push('/home');
-        // }
     },
 };
 </script>
 
 <style>
-/* Add some CSS styles to make the template look stylish */
-
 .login-container {
   display: flex;
   justify-content: center;
