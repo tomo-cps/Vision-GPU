@@ -17,7 +17,7 @@ npm run serve
 ```
 bash setup.sh USER_NAME YOUR_PYTHON_SOFTWARE
 ```
-ex. bash setup.sh tomo anaconda3
+ex. bash setup.sh tomo [anaconda3](https://www.anaconda.com/download/)
 
 If it doesn't work, check the port and add the following code to **/etc/init.d/my_iptables_on.sh**
 
