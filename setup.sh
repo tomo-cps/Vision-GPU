@@ -28,6 +28,7 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl start vig-app
+sudo systemctl enable vig-app.service
 sudo systemctl status vig-app
 
 
